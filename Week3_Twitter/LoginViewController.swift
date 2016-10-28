@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
         let callbackURL = URL(string: "mytwitterdemo://oauth")
         print (callbackURL)
             
-        twitterClient?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: nil, scope: nil, success: { (requestToken: BDBOAuth1Credential?) -> Void in
+        twitterClient?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: callbackURL, scope: nil, success: { (requestToken: BDBOAuth1Credential?) -> Void in
                 print("TwitterClient request token: Success!")
             
             
