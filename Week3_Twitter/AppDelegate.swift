@@ -37,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        print("I became active!")
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -47,7 +46,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //Retrieve the token
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:] ) -> Bool {
+        
         print(url.description)
+        let requestToken = BDBOAuth1Credential(queryString: url.query)
+        
+        let twitterClient = BDBOAuth1SessionManager(baseURL: URL(string: "https://api.twitter.com")!, consumerKey: "KvwIhQcx88dGBZmzETQTNH57C", consumerSecret: "tSwf38Re0RvX1W2CKFsYJv3uiRbpMQlPWyDXNWY2WGy10pNfnA")
+        
+        twitterClient?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken:BDBOAuth1Credential? ) in
+                print("Appdelegate: Got the Access Token")
+            
+                //Get Account Info
+                twitterClient?.get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task:URLSessionDataTask, response:Any!) in
+                    
+                    let userDictionary = response as! NSDictionary
+                    //print(user)
+                    
+                    let user = User(dictionary: userDictionary)
+                    print("Name: \(user.name)")
+                    print("Screen Name: \(user.screenName)")
+                    print("Profile URL: \(user.profileURL)")
+                    print("description: \(user.tagLine)")
+                    
+                }, failure: { (task:URLSessionDataTask?, errors:Error) in
+                    print("Error: \(errors.localizedDescription)")
+                })
+        
+            
+                //Get Tweet
+            twitterClient?.get("1.1/statuses/home_timeline.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+                
+                    let dictionaries = response as! [NSDictionary]
+                
+                    let tweets = Tweet.tweetFromArray(dictionaries: dictionaries)
+                    for tweet in tweets {
+                        print("Tweet: \(tweet.text)")
+                    }
+                
+                
+                }, failure: { (task: URLSessionDataTask?, errors: Error) in
+                    print("Errors: \(errors.localizedDescription)")
+            })
+            
+            }, failure: { (errors:Error? ) in
+                print(errors)
+        })
+        
         return true
     }
     

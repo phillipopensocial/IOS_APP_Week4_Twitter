@@ -13,6 +13,8 @@
 		29F4E8331DC1C97500B3A1DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29F4E8321DC1C97500B3A1DA /* Assets.xcassets */; };
 		29F4E8361DC1C97500B3A1DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29F4E8341DC1C97500B3A1DA /* LaunchScreen.storyboard */; };
 		29F4E83E1DC1CC7D00B3A1DA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F4E83D1DC1CC7D00B3A1DA /* LoginViewController.swift */; };
+		29F4E8431DC3272700B3A1DA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F4E8421DC3272700B3A1DA /* User.swift */; };
+		29F4E8451DC3273A00B3A1DA /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F4E8441DC3273A00B3A1DA /* Tweet.swift */; };
 		6281580668619C63213155A1 /* Pods_Week3_Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD2DB8FCDEEAD1CBC07224A6 /* Pods_Week3_Twitter.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +28,8 @@
 		29F4E8351DC1C97500B3A1DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29F4E8371DC1C97500B3A1DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29F4E83D1DC1CC7D00B3A1DA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		29F4E8421DC3272700B3A1DA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		29F4E8441DC3273A00B3A1DA /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		8B29DAD7AA3EA3B1F840E0FC /* Pods-Week3_Twitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Week3_Twitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Week3_Twitter/Pods-Week3_Twitter.release.xcconfig"; sourceTree = "<group>"; };
 		FD2DB8FCDEEAD1CBC07224A6 /* Pods_Week3_Twitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Week3_Twitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -63,15 +67,41 @@
 		29F4E82A1DC1C97500B3A1DA /* Week3_Twitter */ = {
 			isa = PBXGroup;
 			children = (
+				29F4E8401DC326E000B3A1DA /* API */,
+				29F4E8411DC326E600B3A1DA /* Model */,
+				29F4E83F1DC326D700B3A1DA /* ViewController */,
 				29F4E82B1DC1C97500B3A1DA /* AppDelegate.swift */,
-				29F4E82D1DC1C97500B3A1DA /* ViewController.swift */,
 				29F4E82F1DC1C97500B3A1DA /* Main.storyboard */,
 				29F4E8321DC1C97500B3A1DA /* Assets.xcassets */,
 				29F4E8341DC1C97500B3A1DA /* LaunchScreen.storyboard */,
 				29F4E8371DC1C97500B3A1DA /* Info.plist */,
-				29F4E83D1DC1CC7D00B3A1DA /* LoginViewController.swift */,
 			);
 			path = Week3_Twitter;
+			sourceTree = "<group>";
+		};
+		29F4E83F1DC326D700B3A1DA /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				29F4E83D1DC1CC7D00B3A1DA /* LoginViewController.swift */,
+				29F4E82D1DC1C97500B3A1DA /* ViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		29F4E8401DC326E000B3A1DA /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		29F4E8411DC326E600B3A1DA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				29F4E8421DC3272700B3A1DA /* User.swift */,
+				29F4E8441DC3273A00B3A1DA /* Tweet.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		95355388228A26A96838F097 /* Pods */ = {
@@ -214,6 +244,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29F4E8431DC3272700B3A1DA /* User.swift in Sources */,
+				29F4E8451DC3273A00B3A1DA /* Tweet.swift in Sources */,
 				29F4E83E1DC1CC7D00B3A1DA /* LoginViewController.swift in Sources */,
 				29F4E82E1DC1C97500B3A1DA /* ViewController.swift in Sources */,
 				29F4E82C1DC1C97500B3A1DA /* AppDelegate.swift in Sources */,
