@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
         return true
     }
 
@@ -49,40 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print(url.description)
         
-        let requestToken = BDBOAuth1Credential(queryString: url.query)
-        
-        let client = TwitterClient.sharedInstance!
-        
-        client.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken:BDBOAuth1Credential? ) in
-                print("Appdelegate: Got the Access Token")
-            
-            
-                //Get Account Info
-                client.currentAccount(success: { (user: User) in
-                    
-                    print("\n\n\nName: \(user.name)")
-                    print("Screen Name: \(user.screenName)")
-                    print("Profile URL: \(user.profileURL)")
-                    print("description: \(user.tagLine)\n\n\n")
-                    
-                }, failure: { (errors:Error) in
-                            print(errors.localizedDescription)
-                })
-        
-
-            
-                //Get Tweet
-                client.homeTimeLine(success: { (tweets:[Tweet]) in
-                    for tweet in tweets {
-                        print(tweet.text)
-                    }
-                }, failure: { (errors:Error) in
-                    print(errors.localizedDescription)
-                })
-        
-            }, failure: { (errors:Error? ) in
-                print(errors)
-        })
+        TwitterClient.sharedInstance?.handleOpenURL(url: url)
         
         return true
     }

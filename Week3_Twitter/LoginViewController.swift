@@ -12,25 +12,44 @@ import BDBOAuth1Manager
 class LoginViewController: UIViewController {
 
     @IBAction func onLoginButton(_ sender: AnyObject) {
-        let twitterClient = BDBOAuth1SessionManager(baseURL: URL(string: "https://api.twitter.com")!, consumerKey: "KvwIhQcx88dGBZmzETQTNH57C", consumerSecret: "tSwf38Re0RvX1W2CKFsYJv3uiRbpMQlPWyDXNWY2WGy10pNfnA")
         
-        twitterClient?.deauthorize()
+        let client = TwitterClient.sharedInstance!
         
-        let callbackURL = URL(string: "pptwitterdemo://oauth")
-        print (callbackURL)
+        client.login(success: {
             
-        twitterClient?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: callbackURL, scope: nil, success: { (requestToken: BDBOAuth1Credential?) -> Void in
-                print("TwitterClient request token: Success!")
+            //Login Success
+            self.performSegue(withIdentifier: "loginSegue", sender: self)
             
+             //Get Account Info
+             client.currentAccount(success: { (user: User) in
+             
+                 print("\n\n\nName: \(user.name)")
+                 print("Screen Name: \(user.screenName)")
+                 print("Profile URL: \(user.profileURL)")
+                 print("description: \(user.tagLine)\n\n\n")
+             
+             }, failure: { (errors:Error) in
+                print(errors.localizedDescription)
+             })
+             
+             
+             //Get Tweet
+             client.homeTimeLine(success: { (tweets:[Tweet]) in
+                
+                 for tweet in tweets {
+                 print(tweet.text)
+                 }
+                
+             }, failure: { (errors:Error) in
+                print(errors.localizedDescription)
+             })
+
+
             
-                let url = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken!.token!)")
-            
-                UIApplication.shared.open(url!, options: ["":""], completionHandler: nil)
-            
-            
-            }, failure: { (errors: Error? ) -> Void in
-                print("TwitterClient request token error: \(errors)")
-        })
+        }) { (errors: Error) in
+                print ("Error: \(errors.localizedDescription)")
+        }
+
         
     }
     
