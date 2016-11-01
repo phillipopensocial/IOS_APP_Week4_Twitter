@@ -19,6 +19,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        if User.currentUser != nil {
+            print("\nAppDelegate: There is a current user")
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+            
+            //Point to the desire controller
+            self.window?.rootViewController = vc
+            
+            /*
+            print("\nAppDelegate: Activate Login")
+            TwitterClient.sharedInstance!.login(success: {
+                
+
+                
+            }, failure: { (errors:Error) in
+                print("Error: \(errors.localizedDescription)")
+            })
+            */
+            
+
+            
+        }else{
+            print("\nAppDelegate: There is no current user")
+        }
+        
+        //Setup Observable
+        NotificationCenter.default.addObserver(forName: User.Notification_UserDidLogout, object: nil, queue: OperationQueue.current ) { (NSNotification)-> Void in
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateInitialViewController()
+            
+            self.window?.rootViewController = vc
+        }
+        
         return true
     }
 

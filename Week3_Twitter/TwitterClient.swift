@@ -11,7 +11,7 @@ import BDBOAuth1Manager
 
 class TwitterClient: BDBOAuth1SessionManager {
 
-    
+    //Singleton
     static let sharedInstance = TwitterClient(baseURL: URL(string: "https://api.twitter.com")!, consumerKey: "KvwIhQcx88dGBZmzETQTNH57C", consumerSecret: "tSwf38Re0RvX1W2CKFsYJv3uiRbpMQlPWyDXNWY2WGy10pNfnA")
     
     func currentAccount( success: @escaping (User) ->(), failure: @escaping (Error) ->() ) {
@@ -72,10 +72,18 @@ class TwitterClient: BDBOAuth1SessionManager {
             requestToken, success: { (accessToken:BDBOAuth1Credential? ) in
             print("Appdelegate: Got the Access Token")
             
-            self.loginSuccess?()
             
+                self.currentAccount(success: { (user:User) in
+                    
+                    User.currentUser = user
+                    self.loginSuccess?()
+                    
+                }, failure: { (errors:Error) in
+                    self.loginFailure!(errors)
+                })
+                
         }, failure: { (errors:Error? ) in
-            print("Errors: \(errors?.localizedDescription )")
+            print("Errors: \(errors!.localizedDescription )")
             self.loginFailure!(errors!)
         })
     }
@@ -92,11 +100,39 @@ class TwitterClient: BDBOAuth1SessionManager {
                 success(tweets)
             
             
-            }, failure: { (task: URLSessionDataTask?, errors: Error) in
+        }, failure: { (task: URLSessionDataTask?, errors: Error) in
                
                 failure(errors)
         })
 
+    }
+    
+    func logout() {
+        
+        User.currentUser = nil
+        deauthorize()
+        
+        //Switch back to main screen
+        NotificationCenter.default.post(name: User.Notification_UserDidLogout, object: nil)
+        
+    }
+    
+    func createFavorite(id:NSNumber, success: @escaping ()->(), failure: @escaping (Error)->() ){
+
+        
+        print("1.1/favorites/create.json?id=\(id)")
+        post("1.1/favorites/create.json?id=\(id)", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            
+            success()
+            
+            
+        }, failure: { (task: URLSessionDataTask?, errors: Error) in
+                
+            failure(errors)
+            
+        })
+
+        
     }
     
 }

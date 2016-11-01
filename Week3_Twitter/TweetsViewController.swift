@@ -15,34 +15,33 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
     @IBAction func onBackButton(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func onLogoutButton(_ sender: AnyObject) {
+        
+        TwitterClient.sharedInstance?.logout()  
+    }
+    
+    
+    
+    
     var tweets: [Tweet]=[]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         //Setup table
         tableView.dataSource = self
 
+        //Refresh Control
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(reloadTweets(refreshControl:)), for: UIControlEvents.valueChanged)
+        tableView.insertSubview(refreshControl, at: 0)
+        
+        
         // Do any additional setup after loading the view.
         //Get Tweet
-        TwitterClient.sharedInstance!.homeTimeLine(success: { (tweets:[Tweet]) in
-            
-            print("\n\nTweetViewController")
-            
-            self.tweets = tweets
-            
-            for tweet in tweets {
-                print(tweet.text)
-            }
-            
-            self.tableView.reloadData()
-            
-        }, failure: { (errors:Error) in
-                print(errors.localizedDescription)
-        })
+        reloadTweets(refreshControl: refreshControl)
         
-
 
     }
 
@@ -56,8 +55,15 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "com.codepath.TweetCell", for: indexPath) as! TweetCell
         
+        cell.tweet = self.tweets[indexPath.row]
         cell.gTextLabel.text = self.tweets[indexPath.row].text!
+        cell.gUserLabel.text = self.tweets[indexPath.row].profileUserName!
+        cell.gCreateTimeLabel.text = self.tweets[indexPath.row].timestamp?.description
         
+        if let anImageURL = (self.tweets[indexPath.row].profileImageUrlHttps) {
+            cell.gImageView.setImageWith( anImageURL )
+        }
+
         return cell
     }
     
@@ -76,4 +82,40 @@ class TweetsViewController: UIViewController, UITableViewDataSource {
     }
     */
 
+    
+    func reloadTweets(refreshControl: UIRefreshControl){
+        
+        TwitterClient.sharedInstance!.homeTimeLine(success: { (tweets:[Tweet]) in
+            
+            print("\n\nTweetViewController")
+            
+            self.tweets = tweets
+            
+            for tweet in tweets {
+                print(tweet.text)
+            }
+            
+            self.tableView.reloadData()
+            refreshControl.endRefreshing()
+            
+        }, failure: { (errors:Error) in
+                print(errors.localizedDescription)
+        })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let dvc = segue.destination as! TweetDetailViewController
+        let indexPath = tableView.indexPathForSelectedRow
+        
+        let tweetCell = self.tableView.cellForRow(at: indexPath!) as? TweetCell
+        
+        dvc.tweet = tweetCell?.tweet
+        
+        print ("\n\nTweetDetailViewController: Prepare for seque: ")
+        
+
+
+    }
+    
 }
