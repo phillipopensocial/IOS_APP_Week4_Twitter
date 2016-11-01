@@ -20,15 +20,11 @@ class TweetDetailViewController: UIViewController {
 
     @IBOutlet weak var gRetweetIcon: UIButton!
     @IBOutlet weak var gReplyIcon: UIButton!
+
     @IBOutlet weak var gFavoriteIcon: UIButton!
-
-
-
-    
     
     @IBOutlet weak var gIDLabel: UILabel!
     
-    @IBOutlet weak var gFavoritedLabel: UILabel!
     
     
     
@@ -81,8 +77,7 @@ class TweetDetailViewController: UIViewController {
         }
         
         gIDLabel.text = self.tweet?.id?.description
-        gFavoritedLabel.text = self.tweet?.favorited
-
+ 
     }
 
     override func didReceiveMemoryWarning() {
