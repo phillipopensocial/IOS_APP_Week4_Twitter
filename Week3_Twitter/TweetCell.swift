@@ -18,10 +18,6 @@ class TweetCell: UITableViewCell {
     
     var tweet: Tweet?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -29,4 +25,20 @@ class TweetCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+        
+        //Wrap Text
+        self.gTextLabel.preferredMaxLayoutWidth = self.gTextLabel.frame.size.width
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        //Wrap text
+        self.gTextLabel.preferredMaxLayoutWidth = self.gTextLabel.frame.size.width
+    }
+
+    
 }

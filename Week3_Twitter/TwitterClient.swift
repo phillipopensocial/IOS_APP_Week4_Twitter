@@ -132,7 +132,23 @@ class TwitterClient: BDBOAuth1SessionManager {
             
         })
 
+    }
+    
+    func retweet(id:NSNumber, success: @escaping ()->(), failure: @escaping (Error)->() ){
+        
+        print("1.1/statuses/retweet/\(id).json")
+        post("1.1/statuses/retweet/\(id).json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            
+            success()
+            
+            
+        }, failure: { (task: URLSessionDataTask?, errors: Error) in
+                
+                failure(errors)
+                
+        })
         
     }
+    
     
 }

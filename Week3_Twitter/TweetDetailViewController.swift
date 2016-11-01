@@ -17,9 +17,13 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var gCreateTimeLabel: UILabel!
     @IBOutlet weak var gTextLabel: UILabel!
     
+
+    @IBOutlet weak var gRetweetIcon: UIButton!
+    @IBOutlet weak var gReplyIcon: UIButton!
     @IBOutlet weak var gFavoriteIcon: UIButton!
 
-    @IBOutlet weak var gReplyIcon: UIButton!
+
+
     
     
     @IBOutlet weak var gIDLabel: UILabel!
@@ -32,11 +36,36 @@ class TweetDetailViewController: UIViewController {
         
         TwitterClient.sharedInstance!.createFavorite(id: (self.tweet?.id)!, success: {
             print("Success!")
+            
+            //Switch button image
+            if let image = UIImage(named: "like-action-on.png") {
+                self.gFavoriteIcon.setImage(image, for: .normal)
+            }
+            
         }) { (errors:Error) in
             print("Error: \(errors.localizedDescription)")
         }
         
     }
+    
+    @IBAction func onReplyAction(_ sender: AnyObject) {
+    }
+    
+    
+    @IBAction func onRetweetAction(_ sender: AnyObject) {
+        TwitterClient.sharedInstance!.retweet(id: (self.tweet?.id)!, success: {
+            print("Success!")
+            
+            //Switch button image
+            if let image = UIImage(named: "retweet-action-on.png") {
+                self.gRetweetIcon.setImage(image, for: .normal)
+            }
+        }) { (errors:Error) in
+            print("Error: \(errors.localizedDescription)")
+        }
+        
+    }
+
     
     
     override func viewDidLoad() {
@@ -71,5 +100,7 @@ class TweetDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+
 
 }
