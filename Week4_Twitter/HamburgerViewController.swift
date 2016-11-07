@@ -17,15 +17,17 @@ class HamburgerViewController: UIViewController {
     var originalLeftMargin: CGFloat!
     
     var menuViewController:UIViewController! {
-        didSet(oldContentViewController) {
+        didSet(oldMenuViewController) {
             view.layoutIfNeeded()
             
             //Release old view
-            if(oldContentViewController != nil){
-                oldContentViewController.willMove(toParentViewController: nil)
-                oldContentViewController.view.removeFromSuperview()
-                oldContentViewController.didMove(toParentViewController: nil)
+/*
+            if(oldMenuViewController != nil){
+                oldMenuViewController.willMove(toParentViewController: nil)
+                oldMenuViewController.view.removeFromSuperview()
+                oldMenuViewController.didMove(toParentViewController: nil)
             }
+  */
             
             menuViewController.willMove(toParentViewController: self)
             menuView.addSubview(menuViewController.view)
@@ -38,11 +40,13 @@ class HamburgerViewController: UIViewController {
             view.layoutIfNeeded()
         
             //Release old view
+/*
             if(oldContentViewController != nil){
                 oldContentViewController.willMove(toParentViewController: nil)
                 oldContentViewController.view.removeFromSuperview()
                 oldContentViewController.didMove(toParentViewController: nil)
             }
+*/
             
             //Notify Parent about to move in
             contentViewController.willMove(toParentViewController: self)
@@ -83,6 +87,9 @@ class HamburgerViewController: UIViewController {
         }
     }
     
+    @IBAction func onLogout(_ sender: AnyObject) {
+         TwitterClient.sharedInstance?.logout()  
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

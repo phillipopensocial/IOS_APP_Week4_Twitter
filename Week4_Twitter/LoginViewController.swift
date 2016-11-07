@@ -18,7 +18,9 @@ class LoginViewController: UIViewController {
         client.login(success: {
             
             //Login Success
-            self.performSegue(withIdentifier: "loginSegue", sender: self)
+            //self.performSegue(withIdentifier: "loginSegue", sender: self)
+            //self.performSegue(withIdentifier: "loginSegueToHamburger", sender: self)
+            NotificationCenter.default.post(name: User.Notification_UserDidLogin, object: nil)
             
              //Get Account Info
              client.currentAccount(success: { (user: User) in

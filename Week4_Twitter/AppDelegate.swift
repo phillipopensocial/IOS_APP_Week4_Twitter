@@ -19,44 +19,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        //Hamburger 
-        let hamburgerViewController = window!.rootViewController as! HamburgerViewController
         
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let menuViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
-        
-        menuViewController.hamburgerViewController = hamburgerViewController
-        hamburgerViewController.menuViewController = menuViewController
-        
+        //Setup Observable: Login
+        NotificationCenter.default.addObserver(forName: User.Notification_UserDidLogin, object: nil, queue: OperationQueue.current) { (NSNotification) in
+            
+            //Setup the Hamburger as the main menu
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            
+            
+            //Get the Embedded NavigationController first
+            let hnc = storyBoard.instantiateViewController(withIdentifier: "hamburgerNavigationController") as! UINavigationController
+            self.window?.rootViewController = hnc
+            
+            //Retrieve the ViewController that the embedded Navigator control
+            let hamburgerViewController = hnc.viewControllers[0] as! HamburgerViewController
+            
+            let menuViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+            
+            menuViewController.hamburgerViewController = hamburgerViewController
+            hamburgerViewController.menuViewController = menuViewController
+
+        }
         
         //Login
         if User.currentUser != nil {
             print("\nAppDelegate: There is a current user")
             
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
-            
+            //Original code from Week 3 - direct link between Login & TweetView
+            //let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            //let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
             //Point to the desire controller
-            self.window?.rootViewController = vc
+            //self.window?.rootViewController = vc
+
+            
+            //Hamburger NAVIGATION controller take over
+            NotificationCenter.default.post(name: User.Notification_UserDidLogin, object: nil)
             
             /*
             print("\nAppDelegate: Activate Login")
             TwitterClient.sharedInstance!.login(success: {
-                
-
-                
             }, failure: { (errors:Error) in
                 print("Error: \(errors.localizedDescription)")
             })
             */
             
-
-            
         }else{
             print("\nAppDelegate: There is no current user")
         }
         
-        //Setup Observable
+
+        //Setup Observable: Logout
         NotificationCenter.default.addObserver(forName: User.Notification_UserDidLogout, object: nil, queue: OperationQueue.current ) { (NSNotification)-> Void in
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -64,6 +76,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             self.window?.rootViewController = vc
         }
+
+        
         
         return true
     }
