@@ -10,11 +10,12 @@ import UIKit
 
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    private var greenNavigationController: UIViewController!
-    private var blueNavigationController: UIViewController!
-    private var orangeNavigationController: UIViewController!
+    private var firstNavigationController: UIViewController!
+    private var secondNavigationController: UIViewController!
+    private var thirdNavigationController: UIViewController!
     
-    var titles = ["Green","Blue","Orange"]
+    var titles = //["Green","Blue","Orange"]
+        ["Profile","Home Timeline", "Mentions View"]
     var viewControllers: [UIViewController] = []
     var hamburgerViewController: HamburgerViewController!
 
@@ -30,18 +31,25 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        greenNavigationController = storyboard.instantiateViewController(withIdentifier: "GreenNavigationController")
-        blueNavigationController = storyboard.instantiateViewController(withIdentifier: "BlueNavigationController")
-        orangeNavigationController = storyboard.instantiateViewController(withIdentifier: "OrangeNavigationController")
+        //Create instances
+        firstNavigationController = storyboard.instantiateViewController(withIdentifier: "UserProfileNavigationController")
+        secondNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+        thirdNavigationController = storyboard.instantiateViewController(withIdentifier: "OrangeNavigationController")
         
-        viewControllers.append(greenNavigationController)
-        viewControllers.append(blueNavigationController)
-        viewControllers.append(orangeNavigationController)
+        //Custom adjustment
+        ((firstNavigationController as! UINavigationController).viewControllers[0] as! UserProfileViewController).user = User.currentUser
         
+        //Add instances
+        viewControllers.append(firstNavigationController)
+        viewControllers.append(secondNavigationController)
+        viewControllers.append(thirdNavigationController)
+        
+        //Set to the initial view
+        hamburgerViewController.contentViewController = viewControllers[ 0 ]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3 //viewControllers.count
+        return viewControllers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

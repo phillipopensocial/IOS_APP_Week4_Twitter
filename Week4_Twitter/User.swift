@@ -16,7 +16,12 @@ class User: NSObject {
     var name:String?
     var screenName:String?
     var profileURL: URL?
+    var profileBGURL: URL?
     var tagLine: String?
+    var tweetsCount: NSNumber?
+    var followingCount: NSNumber?
+    var followersCount: NSNumber?
+    
     
     var dictionary: NSDictionary?
     
@@ -26,12 +31,22 @@ class User: NSObject {
         
         name = dictionary["name"] as? String
         screenName = dictionary["screen_name"] as? String
+        tagLine = dictionary["description"] as? String
+        tweetsCount = dictionary["statuses_count"] as? NSNumber
+        followingCount = dictionary["friends_count"] as? NSNumber
+        followersCount = dictionary["followers_count"] as? NSNumber
         
         let profileURLString = dictionary["profile_image_url_https"] as? String
         if let profileURLString = profileURLString {
-            profileURL = URL(string: profileURLString)
+            profileURL = URL(string: profileURLString.replacingOccurrences(of: "_normal", with: "") )
         }
-        tagLine = dictionary["description"] as? String
+        
+        let profileBGURLString = dictionary["profile_background_image_url_https"] as? String
+        if let profileBGURLString = profileBGURLString {
+            
+            profileBGURL = URL(string: profileBGURLString.replacingOccurrences(of: "_normal", with: "") )
+        }
+
 
     }
     

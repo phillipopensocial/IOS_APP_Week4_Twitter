@@ -84,29 +84,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="95" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uUK-ng-pC4">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="49" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uUK-ng-pC4">
                                 <frame key="frameInset" minY="58" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.codepath.MenuCell" rowHeight="65" id="0Ch-ju-0D6" customClass="MenuCell" customModule="Week4_Twitter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="65"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.codepath.MenuCell" rowHeight="49" id="0Ch-ju-0D6" customClass="MenuCell" customModule="Week4_Twitter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="49"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0Ch-ju-0D6" id="f82-7m-Xp1">
-                                            <frame key="frameInset" width="375" height="64"/>
+                                            <frame key="frameInset" width="375" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Main Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cE-I4-avD">
-                                                    <frame key="frameInset" minX="8" minY="11" width="123" height="42"/>
+                                                    <frame key="frameInset" minX="8" width="123" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="9cE-I4-avD" secondAttribute="bottom" constant="1" id="8v7-8V-RuY"/>
-                                                <constraint firstItem="9cE-I4-avD" firstAttribute="leading" secondItem="f82-7m-Xp1" secondAttribute="leadingMargin" constant="1" id="poi-Ij-oUo"/>
-                                                <constraint firstItem="9cE-I4-avD" firstAttribute="top" secondItem="f82-7m-Xp1" secondAttribute="topMargin" constant="1" id="r2w-7M-mOT"/>
+                                                <constraint firstItem="9cE-I4-avD" firstAttribute="top" secondItem="f82-7m-Xp1" secondAttribute="top" id="2HG-tX-SOj"/>
+                                                <constraint firstAttribute="bottom" secondItem="9cE-I4-avD" secondAttribute="bottom" id="Eo0-fy-i74"/>
+                                                <constraint firstItem="9cE-I4-avD" firstAttribute="leading" secondItem="f82-7m-Xp1" secondAttribute="leading" id="aes-q0-s17"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -181,7 +181,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="esa-8y-VJy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1961" y="-2063"/>
+            <point key="canvasLocation" x="1822" y="-2073"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -215,7 +215,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-321" y="134"/>
+            <point key="canvasLocation" x="-335" y="134"/>
         </scene>
         <!--Tweets View Controller-->
         <scene sceneID="cXT-1K-XDK">
@@ -312,6 +312,77 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uId-uD-Ofq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3414" y="134"/>
+        </scene>
+        <!--User Profile View Controller-->
+        <scene sceneID="ohP-RZ-62E">
+            <objects>
+                <viewController id="xGz-Db-W8R" customClass="UserProfileViewController" customModule="Week4_Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="74g-FH-s6g"/>
+                        <viewControllerLayoutGuide type="bottom" id="Daz-pc-x5S"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iCj-Kn-Bih">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bVF-Q3-eGJ">
+                                <frame key="frameInset" minY="64" width="375" height="94"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qt1-j6-781">
+                                <frame key="frameInset" minX="23" minY="99" width="120" height="120"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Screen Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7A-bE-yvv">
+                                <frame key="frameInset" minX="23" minY="227" width="138" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Following:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3D-GW-0hM">
+                                <frame key="frameInset" minX="23" minY="307" width="89" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Following Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ph5-Wl-zph">
+                                <frame key="frameInset" minX="132" minY="304" width="130" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Followers:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYd-Ze-nXV">
+                                <frame key="frameInset" minX="23" minY="351" width="89" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Followers Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDm-1z-S7Y">
+                                <frame key="frameInset" minX="132" minY="348" width="130" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="aA1-L0-py1"/>
+                    <connections>
+                        <outlet property="gFollowersCount" destination="cDm-1z-S7Y" id="gtz-MH-G4l"/>
+                        <outlet property="gFollowingCount" destination="ph5-Wl-zph" id="IV5-1e-1D3"/>
+                        <outlet property="gProfileBGURL" destination="bVF-Q3-eGJ" id="x0i-q3-Jnb"/>
+                        <outlet property="gProfileURL" destination="Qt1-j6-781" id="zBl-vY-qtT"/>
+                        <outlet property="gScreenName" destination="o7A-bE-yvv" id="8pw-JC-FEy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bmj-gW-Bji" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3413.5999999999999" y="921.58920539730138"/>
         </scene>
         <!--Tweet Detail View Controller-->
         <scene sceneID="HHj-er-z8K">
@@ -525,7 +596,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uAt-ka-HP8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1961" y="-2804"/>
+            <point key="canvasLocation" x="1822" y="-2804"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xn3-9x-DMJ">
@@ -544,6 +615,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VvM-rQ-7GL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="459" y="-555"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="n82-Iw-xvq">
+            <objects>
+                <navigationController storyboardIdentifier="UserProfileNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="sKO-p6-9pV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="t2v-lN-6s1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xGz-Db-W8R" kind="relationship" relationship="rootViewController" id="xBL-P0-fJY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wKT-Wx-4rv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2378" y="922"/>
         </scene>
     </scenes>
     <resources>

@@ -21,13 +21,13 @@ class HamburgerViewController: UIViewController {
             view.layoutIfNeeded()
             
             //Release old view
-/*
+
             if(oldMenuViewController != nil){
                 oldMenuViewController.willMove(toParentViewController: nil)
                 oldMenuViewController.view.removeFromSuperview()
                 oldMenuViewController.didMove(toParentViewController: nil)
             }
-  */
+
             
             menuViewController.willMove(toParentViewController: self)
             menuView.addSubview(menuViewController.view)
@@ -40,13 +40,13 @@ class HamburgerViewController: UIViewController {
             view.layoutIfNeeded()
         
             //Release old view
-/*
+
             if(oldContentViewController != nil){
                 oldContentViewController.willMove(toParentViewController: nil)
                 oldContentViewController.view.removeFromSuperview()
                 oldContentViewController.didMove(toParentViewController: nil)
             }
-*/
+
             
             //Notify Parent about to move in
             contentViewController.willMove(toParentViewController: self)
