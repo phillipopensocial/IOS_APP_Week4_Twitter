@@ -14,8 +14,10 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private var blueNavigationController: UIViewController!
     private var orangeNavigationController: UIViewController!
     
-    var viewControllers: [UIViewController] = []
     var titles = ["Green","Blue","Orange"]
+    var viewControllers: [UIViewController] = []
+    var hamburgerViewController: HamburgerViewController!
+
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -35,10 +37,11 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         viewControllers.append(greenNavigationController)
         viewControllers.append(blueNavigationController)
         viewControllers.append(orangeNavigationController)
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles.count
+        return 3 //viewControllers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,6 +51,14 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //Unselect the row for effect
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        hamburgerViewController.contentViewController = viewControllers[indexPath.row]
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
