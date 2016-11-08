@@ -1,37 +1,27 @@
 //
-//  TweetsViewController.swift
-//  Week3_Twitter
+//  MentionsViewController.swift
+//  Week4_Twitter
 //
-//  Created by Phillip Pang on 10/28/16.
+//  Created by Phillip Pang on 11/7/16.
 //  Copyright © 2016 Phillip Pang. All rights reserved.
 //
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource{
-    
+class MentionsViewController: UIViewController, UITableViewDataSource {
+
     @IBOutlet weak var tableView: UITableView!
     
-    @IBAction func onBackButton(_ sender: AnyObject) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func onLogoutButton(_ sender: AnyObject) {
-        
-        TwitterClient.sharedInstance?.logout()  
-    }
-    
-    
-    
-    
     var tweets: [Tweet]=[]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-            
+        //Register common cell
+        //tableView.register(UINib(nibName: "CommonTweetCell", bundle:nil), forCellReuseIdentifier: "CommonTweetCell")
         
-        //Setup table
+
+        // Do any additional setup after loading the view.
         tableView.dataSource = self
         tableView.estimatedRowHeight = 70
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -46,18 +36,19 @@ class TweetsViewController: UIViewController, UITableViewDataSource{
         //Get Tweet
         reloadTweets(refreshControl: refreshControl)
         
-
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+
     //TableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "com.codepath.TweetCell", for: indexPath) as! TweetCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "com.codepath.CommonTweetCell", for: indexPath) as! TweetCell
         
         cell.tweet = self.tweets[indexPath.row]
         cell.gTextLabel.text = self.tweets[indexPath.row].text!
@@ -67,7 +58,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource{
         if let anImageURL = (self.tweets[indexPath.row].profileImageUrlHttps) {
             cell.gImageView.setImageWith( anImageURL )
         }
-
+        
         return cell
     }
     
@@ -75,23 +66,11 @@ class TweetsViewController: UIViewController, UITableViewDataSource{
         return (tweets.count) ?? 0
     }
 
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    
     func reloadTweets(refreshControl: UIRefreshControl){
         
-        TwitterClient.sharedInstance!.homeTimeLine(success: { (tweets:[Tweet]) in
+        TwitterClient.sharedInstance!.mentionsTimeLine(success: { (tweets:[Tweet]) in
             
-            print("\n\nTweetViewController")
+            print("\n\nMentionsViewController")
             
             self.tweets = tweets
             
@@ -102,24 +81,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource{
             self.tableView.reloadData()
             refreshControl.endRefreshing()
             
-        }, failure: { (errors:Error) in
+            }, failure: { (errors:Error) in
                 print(errors.localizedDescription)
         })
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        let dvc = segue.destination as! TweetDetailViewController
-        let indexPath = tableView.indexPathForSelectedRow
-        
-        let tweetCell = self.tableView.cellForRow(at: indexPath!) as? TweetCell
-        
-        dvc.tweet = tweetCell?.tweet
-        
-        print ("\n\nTweetDetailViewController: Prepare for seque: ")
-        
 
-
-    }
-    
 }

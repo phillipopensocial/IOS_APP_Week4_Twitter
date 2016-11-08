@@ -10,6 +10,9 @@
 		038D0F4D10FA881235CE6060 /* Pods_Week4_Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7E5DD3821C92E7FC93790A2 /* Pods_Week4_Twitter.framework */; };
 		29003D301DC4798500A9EF1C /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29003D2F1DC4798500A9EF1C /* TweetsViewController.swift */; };
 		29003D341DC47C5C00A9EF1C /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29003D331DC47C5C00A9EF1C /* TweetCell.swift */; };
+		297F004D1DD1A97A00BEF371 /* MentionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297F004C1DD1A97A00BEF371 /* MentionsViewController.swift */; };
+		297F00541DD1AA9100BEF371 /* CommonTweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297F00521DD1AA9100BEF371 /* CommonTweetCell.swift */; };
+		297F00551DD1AA9100BEF371 /* CommonTweetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 297F00531DD1AA9100BEF371 /* CommonTweetCell.xib */; };
 		29C9AFC01DC73272002CD705 /* TweetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C9AFBF1DC73272002CD705 /* TweetDetailViewController.swift */; };
 		29F1141B1DD06B1B009A94A6 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F1141A1DD06B1B009A94A6 /* UserProfileViewController.swift */; };
 		29F42DF91DCC468E0099844D /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F42DF81DCC468E0099844D /* HamburgerViewController.swift */; };
@@ -32,6 +35,9 @@
 		2143956AE7D0F10E698915C5 /* Pods-Week4_Twitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Week4_Twitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Week4_Twitter/Pods-Week4_Twitter.debug.xcconfig"; sourceTree = "<group>"; };
 		29003D2F1DC4798500A9EF1C /* TweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
 		29003D331DC47C5C00A9EF1C /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
+		297F004C1DD1A97A00BEF371 /* MentionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionsViewController.swift; sourceTree = "<group>"; };
+		297F00521DD1AA9100BEF371 /* CommonTweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonTweetCell.swift; sourceTree = "<group>"; };
+		297F00531DD1AA9100BEF371 /* CommonTweetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonTweetCell.xib; sourceTree = "<group>"; };
 		29C9AFBF1DC73272002CD705 /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
 		29C9AFC11DC82BD4002CD705 /* Week4_Twitter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Week4_Twitter.entitlements; sourceTree = "<group>"; };
 		29F1141A1DD06B1B009A94A6 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +78,8 @@
 			children = (
 				29F42E051DCC5A080099844D /* MenuCell.swift */,
 				29003D331DC47C5C00A9EF1C /* TweetCell.swift */,
+				297F00521DD1AA9100BEF371 /* CommonTweetCell.swift */,
+				297F00531DD1AA9100BEF371 /* CommonTweetCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -116,6 +124,7 @@
 			children = (
 				29F4E83D1DC1CC7D00B3A1DA /* LoginViewController.swift */,
 				29003D2F1DC4798500A9EF1C /* TweetsViewController.swift */,
+				297F004C1DD1A97A00BEF371 /* MentionsViewController.swift */,
 				29C9AFBF1DC73272002CD705 /* TweetDetailViewController.swift */,
 				29F42DF81DCC468E0099844D /* HamburgerViewController.swift */,
 				29F42E021DCC550D0099844D /* MenuViewController.swift */,
@@ -231,6 +240,7 @@
 			files = (
 				29F4E8361DC1C97500B3A1DA /* LaunchScreen.storyboard in Resources */,
 				29F4E8331DC1C97500B3A1DA /* Assets.xcassets in Resources */,
+				297F00551DD1AA9100BEF371 /* CommonTweetCell.xib in Resources */,
 				29F4E8311DC1C97500B3A1DA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,7 +302,9 @@
 			files = (
 				29F42E061DCC5A080099844D /* MenuCell.swift in Sources */,
 				29F1141B1DD06B1B009A94A6 /* UserProfileViewController.swift in Sources */,
+				297F00541DD1AA9100BEF371 /* CommonTweetCell.swift in Sources */,
 				29F42DFF1DCC54E50099844D /* GreenViewController.swift in Sources */,
+				297F004D1DD1A97A00BEF371 /* MentionsViewController.swift in Sources */,
 				29F42DF91DCC468E0099844D /* HamburgerViewController.swift in Sources */,
 				29F4E8431DC3272700B3A1DA /* User.swift in Sources */,
 				29003D341DC47C5C00A9EF1C /* TweetCell.swift in Sources */,

@@ -77,7 +77,7 @@ class HamburgerViewController: UIViewController {
             UIView.animate(withDuration: 0.3, animations: {
                 
                 if velocity.x > 0 {
-                    self.leftMarginConstraint.constant = self.view.self.frame.size.width - 50
+                    self.leftMarginConstraint.constant = self.view.self.frame.size.width - 150
                 }else{
                     self.leftMarginConstraint.constant = 0
                 }

@@ -34,7 +34,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //Create instances
         firstNavigationController = storyboard.instantiateViewController(withIdentifier: "UserProfileNavigationController")
         secondNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
-        thirdNavigationController = storyboard.instantiateViewController(withIdentifier: "OrangeNavigationController")
+        thirdNavigationController = storyboard.instantiateViewController(withIdentifier: "mentionsNavigationController")
         
         //Custom adjustment
         ((firstNavigationController as! UINavigationController).viewControllers[0] as! UserProfileViewController).user = User.currentUser
