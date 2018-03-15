@@ -1,4 +1,4 @@
-#IOS_APP_Week4_Twitter
+# IOS_APP_Week4_Twitter
 
 **Name of your app** is a basic twitter app to read and compose tweets from the [Twitter API](https://apps.twitter.com/).
 
